@@ -1,0 +1,2 @@
+[miscellany]
+global-ignores = .DS_Store ._* *.pyc *.pyd *.pyo _trial_temp *.swp

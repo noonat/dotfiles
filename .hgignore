@@ -1,0 +1,7 @@
+syntax: glob
+
+_trial_temp
+*.pyc
+*.pyd
+*.pyo
+._*

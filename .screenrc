@@ -1,0 +1,14 @@
+altscreen on
+caption always "%n(%t) : %C"
+defscrollback 1024
+defutf8 on
+escape ^ff
+hardstatus on
+hardstatus alwayslastline
+hardstatus string '%{= kG}%-Lw%{= kW}%50> %n%f* %t%{= kG}%+Lw%<'
+nonblock on
+screen -t bash
+startup_message off
+vbell off
+vbell_msg 'o_o'
+

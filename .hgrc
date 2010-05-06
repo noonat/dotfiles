@@ -1,0 +1,15 @@
+[ui]
+ignore = ~/.hgignore
+username = Nathan Ostgard <no@nathanostgard.com>
+
+[extensions]
+color =
+pager =
+rebase =
+hgsubversion =
+
+[pager]
+pager = LESS='FSRX' less
+quiet = True
+attend = diff,status,log,qdiff,blame,annotate,pdiff,glog
+
