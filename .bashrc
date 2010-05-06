@@ -15,7 +15,7 @@ for path in $PATHS; do
     new_path=$new_path:$path
 done
 export PATH=${new_path:1}:$old_path
-export MANPATH=/opt/local/share/man:$MANPATH
+export MANPATH=$HOME/.local/share/man:/opt/local/share/man:$MANPATH
 
 export EDITOR=mvim
 export SVN_EDITOR=vim

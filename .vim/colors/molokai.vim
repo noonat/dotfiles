@@ -47,7 +47,8 @@ hi Error           guifg=#960050 guibg=#1E0010
 hi ErrorMsg        guifg=#F92672 guibg=#232526 gui=bold
 hi Exception       guifg=#A6E22E               gui=bold
 hi Float           guifg=#AE81FF
-hi FoldColumn      guifg=#465457 guibg=#000000
+"hi FoldColumn      guifg=#465457 guibg=#000000
+hi FoldColumn      guifg=#465457 guibg=#232526
 hi Folded          guifg=#465457 guibg=#000000
 hi Function        guifg=#A6E22E
 hi Identifier      guifg=#FD971F
@@ -118,7 +119,8 @@ else
    hi Comment         guifg=#465457
    hi CursorLine                    guibg=#293739
    hi CursorColumn                  guibg=#293739
-   hi LineNr          guifg=#BCBCBC guibg=#232526
+"   hi LineNr          guifg=#BCBCBC guibg=#232526
+   hi LineNr          guifg=#333338
    hi NonText         guifg=#BCBCBC guibg=#232526
 end
 
