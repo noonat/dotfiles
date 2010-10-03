@@ -17,4 +17,7 @@
     added = yellow
     changed = green
     untracked = cyan
+[user]
+    name = Nathan Ostgard
+    email = noonat@phuce.com
 
