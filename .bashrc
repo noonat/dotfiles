@@ -2,13 +2,12 @@ source /etc/bashrc
 
 PATHS="
 $HOME/.local/bin
-$HOME/.gem/ruby/1.9.1/bin
-$HOME/.gem/ruby/1.8/bin
-/opt/local/bin
-/opt/local/sbin
+/Developer/SDKs/air_sdk_2/bin
+/Developer/SDKS/flex_sdk_4/bin
+/usr/local/Cellar/python/2.7/bin
 /usr/local/bin
 /usr/local/sbin
-/Developer/SDKS/flex_sdk_3/bin
+/usr/local/share/python
 "
 old_path=$PATH
 for path in $PATHS; do
@@ -16,12 +15,19 @@ for path in $PATHS; do
 done
 export PATH=${new_path:1}:$old_path
 export MANPATH=$HOME/.local/share/man:/opt/local/share/man:$MANPATH
+export HAXE_LIBRARY_PATH="`brew --prefix`/lib/haxe/std"
+#export NEKOPATH="`brew --prefix`/lib/neko"
 
-export EDITOR=mvim
+export EDITOR=vim
 export SVN_EDITOR=vim
 
 alias ls="ls -G"
+alias slime="open -a 'Sublime Text 2'"
 
 set show-all-if-ambiguous on
 set completion-ignore-case on
 
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
+rvm 1.8.7
+
+#source /Developer/SDKs/alchemy_0.5a/alchemy-setup

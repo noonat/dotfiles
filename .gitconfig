@@ -2,8 +2,9 @@
     st = status
     ci = commit
     co = checkout
+	up = pull
 [color]
-    ui = true
+	ui = true
 [color "branch"]
     current = yellow reverse
     local = yellow
@@ -18,6 +19,9 @@
     changed = green
     untracked = cyan
 [user]
-    name = Nathan Ostgard
+	name = Nathan Ostgard
     email = noonat@phuce.com
-
+[core]
+    #editor = mate -w
+    editor = vim
+	autocrlf = false
