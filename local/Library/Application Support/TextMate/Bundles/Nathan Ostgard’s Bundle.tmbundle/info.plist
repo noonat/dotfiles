@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Nathan Ostgard’s Bundle</string>
+	<key>ordering</key>
+	<array>
+		<string>A0E9C3B0-014B-4101-B14B-98173FAD7987</string>
+		<string>49569DD7-D767-4D09-BB0C-D4B3D5E18E34</string>
+	</array>
+	<key>uuid</key>
+	<string>228CAA1B-E763-498F-88BD-6F442D20765A</string>
+</dict>
+</plist>
