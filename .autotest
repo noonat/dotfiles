@@ -1,0 +1,18 @@
+Autotest.add_hook :run_command do
+   print "\e[2J\e[f"
+   false
+end
+
+Autotest.add_hook :ran_command do |autotest|
+   failures = 0
+   results = autotest.results.map { |result| result.gsub(/(\e.*?m|\n)/, '') }
+   results.reject! { |result| !result.match(/\d+\s+(example|test|scenario|step)s?/) }
+   results.each do |result|
+      result.scan(/([1-9]\d*)\s(\w+)/) do |count, type|
+         failures += count.to_i if type =~ /fail|error/
+      end
+   end
+   title = failures > 0 ? 'Failed' : 'Passed'
+   image = File.expand_path("~/.autotest_images/#{title.downcase}.png")
+   system %(growlnotify --image #{image.inspect} -n Autotest -m #{results.join("\n").inspect} #{title.inspect})
+end
