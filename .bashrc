@@ -15,6 +15,7 @@ PATHS="
 /usr/local/bin
 /usr/local/sbin
 /usr/local/share/python
+$HOME/.rbenv/bin
 $HOME/.rvm/bin
 "
 old_path=$PATH
@@ -45,9 +46,8 @@ shopt -s histappend
 PS1='\[\e[1;30m\]\u@\h \[\e[1;36m\]\W \[\e[1;30m\]\$\[\e[0m\] '
 
 complete -C $DOTFILES/rake-completion.rb -o default rake
-
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-rvm 1.9.2-p290
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" && rvm 1.9.2-p290
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 have() {
     unset -v have
