@@ -1,18 +1,44 @@
-Autotest.add_hook :run_command do
-   print "\e[2J\e[f"
-   false
+def growlnotify(title, message, image=nil)
+  image ||= title.downcase
+  image = File.expand_path("~/.autotest_images/#{image.downcase}.png")
+  system %(growlnotify -n Autotest --image #{image.inspect} -m #{message.inspect} #{title.inspect})
 end
 
-Autotest.add_hook :ran_command do |autotest|
-   failures = 0
-   results = autotest.results.map { |result| result.gsub(/(\e.*?m|\n)/, '') }
-   results.reject! { |result| !result.match(/\d+\s+(example|test|scenario|step)s?/) }
-   results.each do |result|
-      result.scan(/([1-9]\d*)\s(\w+)/) do |count, type|
-         failures += count.to_i if type =~ /fail|error/
+Autotest.add_hook :green do |autotest|
+  growlnotify 'Passed', autotest.printable
+end
+
+Autotest.add_hook :red do |autotest|
+  growlnotify 'Failed', autotest.printable
+end
+
+Autotest.add_hook :error do |autotest|
+  growlnotify 'Failed', 'Error running tests'
+end
+
+class Autotest
+  attr_reader :filtered
+  attr_reader :printable
+
+  alias :handle_results_without_error_hook :handle_results
+  def handle_results(results)
+    @filtered = (results || '').
+      split("\n").
+      map{ |r| r.gsub(/(\e.*?m|\n)/, '') }.
+      reject { |r| !r.match(/\d+\s+(example|test|scenario|step)s?/i) }
+    @printable = @filtered.join("\n")
+    @filtered = @filtered.inject({}) do |hash, line|
+      line.scan(/([0-9]\d*)\s(\w+)/) do |number, kind|
+        hash[kind.to_sym] = number.to_i
       end
-   end
-   title = failures > 0 ? 'Failed' : 'Passed'
-   image = File.expand_path("~/.autotest_images/#{title.downcase}.png")
-   system %(growlnotify --image #{image.inspect} -n Autotest -m #{results.join("\n").inspect} #{title.inspect})
+      hash
+    end
+    tainted = handle_results_without_error_hook results
+    hook :error if latest_results.nil?
+    tainted
+  end
+
+  def has?(kind)
+    filtered && filtered[kind.to_sym] > 0
+  end
 end

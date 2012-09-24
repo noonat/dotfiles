@@ -1,27 +1,36 @@
 [alias]
-    st = status
-    ci = commit
-    co = checkout
+	st = status
+	ci = commit
+	co = checkout
 	up = pull
 [color]
 	ui = true
 [color "branch"]
-    current = yellow reverse
-    local = yellow
-    remote = green
+	current = yellow reverse
+	local = yellow
+	remote = green
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
 [color "status"]
-    added = yellow
-    changed = green
-    untracked = cyan
+	added = yellow
+	changed = green
+	untracked = cyan
 [user]
 	name = Nathan Ostgard
-    email = noonat@phuce.com
+	email = noonat@phuce.com
 [core]
-    #editor = mate -w
-    editor = vim
+	#editor = mate -w
+	editor = vim
 	autocrlf = false
+[github]
+	user = noonat
+	token = 06da4f8c27a0a57665b7bc5fb6ad87c0
+[push]
+	default = current
+[merge]
+	defaultToUpstream = true
+[remote "origin"]
+	push = HEAD
