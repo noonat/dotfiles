@@ -9,7 +9,6 @@ source /etc/bashrc
 export DOTFILES=$HOME/Source/noonat/dotfiles
 
 PATHS="
-/Applications/Unity/Unity.app/Contents/Frameworks/Mono/bin
 /Developer/SDKs/air_sdk_2/bin
 /Developer/SDKS/flex_sdk_4/bin
 /usr/local/Cellar/python/2.7/bin
@@ -30,8 +29,8 @@ export SVN_EDITOR=vim
 
 # ec2
 export JAVA_HOME="$(/usr/libexec/java_home)"
-export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem | /usr/bin/head -1)"
-export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem | /usr/bin/head -1)"
+export EC2_PRIVATE_KEY="$(/bin/ls "$HOME"/.ec2/pk-*.pem 2>/dev/null | /usr/bin/head -1)"
+export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem 2>/dev/null | /usr/bin/head -1)"
 export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
 
 alias ls="ls -G"
