@@ -1,8 +1,7 @@
 [alias]
 	st = status
-	ci = commit
-	co = checkout
-	up = pull
+    merge-log = !sh -c 'git merge && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
+    fetch-all = !sh -c 'git fetch --all && git fetch --tags'
 [color]
 	ui = true
 [color "branch"]
@@ -34,3 +33,5 @@
 	defaultToUpstream = true
 [remote "origin"]
 	push = HEAD
+    tagopt = --all --tags
+

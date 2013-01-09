@@ -1,0 +1,10 @@
+#!/bin/bash
+IFS=$'\n'
+args="$(printf '%s\0' "$@" | sort -nz | xargs -0n1)"
+while true; do
+  for file in $args; do
+    echo "Playing $file"
+    afplay -q 1 "$file"
+  done
+  echo "Repeating playlist"
+done

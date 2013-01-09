@@ -1,0 +1,10 @@
+ctrl-a  go to start of line
+ctrl-e  go to end of line
+alt-f   go forward one word
+alt-b   go back one word
+ctrl-w  delete previous word
+ctrl-u  clear to start of line
+ctrl-k  clear to end of line
+ctrl-l  clear screen
+ctrl-t  swap two characters before cursor
+esc-t   swap two words before cursor

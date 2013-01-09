@@ -17,6 +17,7 @@ PATHS="
 /usr/local/share/python
 $HOME/.rbenv/bin
 $HOME/.rvm/bin
+$HOME/.local/bin
 "
 old_path=$PATH
 for path in $PATHS; do
@@ -35,9 +36,10 @@ export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem 2>/dev/null | /usr/bin/head -
 export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
 
 alias ls="ls -G"
-alias slime="open -a 'Sublime Text 2'"
+alias slime="subl"
 set show-all-if-ambiguous on
 set completion-ignore-case on
+shopt -s extglob
 shopt -s histappend
 
 # keep history synced between terminals
@@ -59,4 +61,9 @@ for file in `brew --prefix`/etc/bash_completion.d/*; do
         . $file
     fi
 done
+
+zsh="$(brew --prefix)/etc/profile.d/z.sh"
+if [ -f "$zsh" ]; then
+    . "$zsh"
+fi
 

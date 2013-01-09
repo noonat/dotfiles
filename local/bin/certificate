@@ -1,0 +1,33 @@
+#!/bin/bash
+FILENAME="$1"
+DOMAIN="$2"
+if [ -z "$FILENAME" -o -z "$DOMAIN" ]; then
+  echo "Usage: $0 <filename> <domain>" 1>&2
+  exit 1
+fi
+KEY="$FILENAME.key"
+REQUEST="$FILENAME.csr"
+CERTIFICATE="$FILENAME.crt"
+if [ -f "$KEY" ]; then
+  echo "File $KEY already exists"
+  exit 1
+fi
+if [ -f "$REQUEST" ]; then
+  echo "File $REQUEST already exists"
+  exit 1
+fi
+if [ -f "$CERTIFICATE" ]; then
+  echo "File $CERTIFICATE already exists"
+  exit 1
+fi
+(
+    openssl genrsa -des3 -passout pass:password -out $KEY.tmp 2048 &&
+    openssl rsa -in $KEY.tmp -passin pass:password -out $KEY &&
+    openssl req -new -key $KEY -out $REQUEST -subj "/C=US/ST=Oregon/L=Eugene/O=PlayHaven/CN=$DOMAIN" &&
+    openssl x509 -req -days 3650 -in $REQUEST -signkey $KEY -out $CERTIFICATE &&
+    chmod 0400 $1.* &&
+    (echo "Created $CERTIFICATE and $KEY" >&2) &&
+    (echo "Remember to add this file to your keychain" >&2)
+) >/dev/null
+rm -f $KEY.tmp
+rm -f $REQUEST
