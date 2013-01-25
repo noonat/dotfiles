@@ -1,37 +1,34 @@
 [alias]
-	st = status
-    merge-log = !sh -c 'git merge && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
-    fetch-all = !sh -c 'git fetch --all && git fetch --tags'
+  st = status
+  merge-log = !sh -c 'git merge && git log --pretty=format:\"%Cred%ae %Creset- %C(yellow)%s %Creset(%ar)\" HEAD@{1}..'
+  fetch-all = !sh -c 'git fetch --all && git fetch --tags'
 [color]
-	ui = true
+  ui = true
 [color "branch"]
-	current = yellow reverse
-	local = yellow
-	remote = green
+  current = yellow reverse
+  local = yellow
+  remote = green
 [color "diff"]
-	meta = yellow bold
-	frag = magenta bold
-	old = red bold
-	new = green bold
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
 [color "status"]
-	added = yellow
-	changed = green
-	untracked = cyan
-[user]
-	name = Nathan Ostgard
-	email = noonat@phuce.com
+  added = yellow
+  changed = green
+  untracked = cyan
 [core]
-	#editor = mate -w
-	editor = vim
-	autocrlf = false
+  editor = vim
+  autocrlf = false
 [github]
-	user = noonat
-	token = 06da4f8c27a0a57665b7bc5fb6ad87c0
-[push]
-	default = current
+  user = noonat
 [merge]
-	defaultToUpstream = true
+  defaultToUpstream = true
 [remote "origin"]
-	push = HEAD
-    tagopt = --all --tags
-
+  push = HEAD
+  tagopt = --all --tags
+[push]
+  default = current
+[user]
+  name = Nathan Ostgard
+  email = noonat@phuce.com
