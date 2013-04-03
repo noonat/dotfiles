@@ -36,6 +36,7 @@ export EC2_CERT="$(/bin/ls "$HOME"/.ec2/cert-*.pem 2>/dev/null | /usr/bin/head -
 export EC2_HOME="/usr/local/Library/LinkedKegs/ec2-api-tools/jars"
 
 alias ls="ls -G"
+alias mysql="mysql_realhost.sh"
 alias slime="subl"
 set show-all-if-ambiguous on
 set completion-ignore-case on
