@@ -1,0 +1,42 @@
+#!/bin/bash
+#mysql_realhost.sh - Puts the real hostname in the mysql prompt
+#Set REAL_MYSQL_PATH to the actual path of your mysql client
+#Edit MYSQL_PS1 to add format the mysql prompt to your preference.
+ 
+#set this to your MySQL path
+REAL_MYSQL_PATH=/usr/local/bin/mysql
+ 
+#look for hostname in mysql command line
+HOSTNEXT=no
+for ARG in $@; do
+  if [ $ARG = "-h" ]; then
+     HOSTNEXT=yes
+  else
+    #if hostnext==yes, this arg follows the -h and
+    #is the hostname passed to mysql
+    if [ $HOSTNEXT = "yes" ]; then
+      CL_HOST=$ARG
+      break;
+    fi
+  fi
+done
+ 
+#if we didn't get it from the mysql command line, try hostname
+if [[ -z $CL_HOST || $CL_HOST = "localhost" || $CL_HOST = "127.0.0.1" ]]; then
+   CL_HOST=`hostname -s`
+fi
+ 
+#finally, if all else fails, set to the mysql token "\h"
+#and let mysql take its best guess
+if [ -z $CL_HOST ]; then
+   CL_HOST='\h';
+fi
+ 
+#Set up the prompt with our generated hostname.
+#Tweak this prompt to have the format you want, just
+#leave $CL_HOST where you want the hostname to be
+export MYSQL_PS1="\u@$CL_HOST> "
+ 
+#now execute mysql with the original arguments
+$REAL_MYSQL_PATH $@
+
